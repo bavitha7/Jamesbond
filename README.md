@@ -81,15 +81,7 @@ Add one of the following configurations:
 
   ```bash
   MODEL=ollama/llama3.1
-  API_BASE=https://localhost:11434
   ```
-
-  Ensure Ollama is running:
-
-  ```bash
-  curl https://localhost:11434
-  ```
-
 **Note**: Do not commit `.env` to Git. It’s included in `.gitignore`.
 
 ## Usage
