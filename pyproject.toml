@@ -2,7 +2,7 @@
 name = "meta_quest_knowledge"
 version = "0.1.0"
 description = "Knowledge Example using crewAI"
-authors = [{ name = "Mike Plachta", email = "mike@crewai.com" }]
+authors = [{ name = "Bavitha Mamidi", email = "bavitham2129@gmail.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
     "crewai[tools]>=0.95.0,<1.0.0",
