@@ -1,48 +1,137 @@
-# PDF Knowledge Example
+# Jamesbond
 
-This project demonstrates how to create a Crew of AI agents and tasks using crewAI. It uses a PDF knowledge source to answer user questions based on the content of the PDF. The PDF is loaded from a file and the knowledge source is initialized with it. The project also includes a custom task that uses the knowledge source to answer user questions. You can modify the question in the `main.py` file.
+The `Jamesbond` project is a `crewAI`-based application leveraging AI agents to perform intelligent tasks. Built with Python, it uses the `crewAI` framework to orchestrate agent-based workflows, with support for local models (e.g., Ollama) or OpenAI’s API for advanced capabilities.
+
+## Table of Contents
+
+- Installation
+- Configuration
+- Usage
+- Project Structure
+- Contributing
+- License
 
 ## Installation
 
-Ensure you have Python >=3.10 <=3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+### Prerequisites
 
-First, if you haven't already, install uv:
+- Python 3.8+ (3.12 recommended)
+- Git
+- `uv` (optional, for dependency management)
+- Ollama (optional, for local model support)
+
+### Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone git@github.com:bavitha7/Jamesbond.git
+   cd Jamesbond
+   ```
+
+2. **Create a Virtual Environment**
+
+   ```bash
+   python3 -m venv reddy
+   source reddy/bin/activate
+   ```
+
+3. **Install Dependencies**
+
+   - Using `uv` (recommended if `uv.lock` exists):
+
+     ```bash
+     pip install uv
+     uv sync
+     ```
+   - Or using `pip`:
+
+     ```bash
+     pip install --upgrade pip
+     pip install crewai
+     ```
+
+4. **Verify Installation**
+
+   ```bash
+   pip show crewai
+   crewai --version
+   ```
+
+## Configuration
+
+Create a `.env` file in the project root to configure the model and API settings:
 
 ```bash
-pip install uv
+nano .env
 ```
 
-Next, navigate to your project directory and install the dependencies:
+Add one of the following configurations:
 
-(Optional) Lock the dependencies and install them by using the CLI command:
+- **For OpenAI**:
+
+  ```bash
+  API_KEY=your-openai-api-key
+  API_BASE=https://api.openai.com/v1
+  ```
+
+  Get an API key from OpenAI.
+
+- **For Ollama (Local Model)**:
+
+  ```bash
+  MODEL=ollama/llama3.1
+  API_BASE=https://localhost:11434
+  ```
+
+  Ensure Ollama is running:
+
+  ```bash
+  curl https://localhost:11434
+  ```
+
+**Note**: Do not commit `.env` to Git. It’s included in `.gitignore`.
+
+## Usage
+
+Run the `crewAI` application:
+
 ```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/meta_quest_knowledge/config/agents.yaml` to define your agents
-- Modify `src/meta_quest_knowledge/config/tasks.yaml` to define your tasks
-- Modify `src/meta_quest_knowledge/crew.py` to add your own logic, tools and specific args
-- Modify `src/meta_quest_knowledge/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
+crewai run
 ```
 
-This command initializes the Crew, assembling the agents and assigning them tasks as defined in your configuration.
+- This executes the main workflow defined in `src/jamesbond/crew.py` or `src/jamesbond/main.py`.
+- If prompted for input (e.g., a question), provide it as needed.
+- If you encounter a warning like `[WARNING]: Failed to init knowledge: Please provide an OpenAI API key`, ensure your `.env` has a valid `API_KEY` or configure for Ollama.
 
-## Additional Knowledge Sources
+## Project Structure
 
-Explore [Knowledge](https://docs.crewai.com/concepts/knowledge) documentation for more information on how to use different knowledge sources.
-You can select from multiple different knowledge sources such as:
-* Text files
-* PDFs
-* CSV & Excel files
-* JSON files
-* Sources supported by [docling](https://github.com/DS4SD/docling)
+```
+Jamesbond/
+├── reddy/              # Virtual environment
+├── src/                # Source code
+│   └── jamesbond/
+│       ├── crew.py     # CrewAI agent definitions
+│       ├── main.py     # Main application script
+│       ├── config/     # Configuration files
+│       └── tools/      # Custom tools for agents
+├── .env                # Environment variables (not committed)
+├── .gitignore          # Git ignore file
+├── pyproject.toml      # Project metadata and dependencies
+├── uv.lock             # Dependency lock file
+└── README.md           # This file
+```
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/your-feature`).
+3. Commit changes (`git commit -m "Add your feature"`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a pull request.
+
+Please follow the Code of Conduct and ensure tests pass before submitting.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
