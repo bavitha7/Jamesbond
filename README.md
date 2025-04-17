@@ -124,6 +124,3 @@ Jamesbond/
 
 Please follow the Code of Conduct and ensure tests pass before submitting.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
